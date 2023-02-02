@@ -12,11 +12,11 @@ async function getDoggies() {
         // först skapa en container åt hunden där vi kan ha all info på dess kort som i Figma
         let article = document.createElement('article');
         // skapa img-elementet
-        let img = document.createElement('img');
+        let imgEl = document.createElement('figure');
         // lägga in bilden som src som finns på hundens objekt (dog -> img-propertyn)
-        img.setAttribute('src', dog.img);
+        imgEl.style.backgroundImage = `url('${dog.img}')`;
         // lägg in skapade bilden i skapade elementet article
-        article.appendChild(img);
+        article.appendChild(imgEl);
 
 
         // skapa en wrapper för namn, kön och ålder
