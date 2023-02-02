@@ -17,7 +17,7 @@ fetchDoggies();
 function createDogCard(dog) {
     // först skapa en container åt hunden där vi kan ha all info på dess kort som i Figma
     let article = document.createElement('article');
-    // lägga på en eventlyssnare på varje hunds kort
+    // lägga på en eventlyssnare på hundens kort där vi skickar med dess chipnummer
     let id = dog.chipNumber;
     article.addEventListener('click', () => {
         dogClicked(id);
@@ -25,7 +25,7 @@ function createDogCard(dog) {
 
     // skapa img-elementet
     let imgEl = document.createElement('figure');
-    // lägga in bilden som src som finns på hundens objekt (dog -> img-propertyn)
+    // lägga in bilden som bg-bild som finns på hundens objekt (dog -> img-propertyn)
     imgEl.style.backgroundImage = `url('${dog.img}')`;
     // lägg in skapade bilden i skapade elementet article
     article.appendChild(imgEl);
@@ -65,5 +65,6 @@ function createDogCard(dog) {
 
 // funktion för när en hund klickas på
 function dogClicked(id) {
+    // tar emot chipnumret så vi har något unikt att gå efter
     console.log('you clicked on: ', id);
 }
