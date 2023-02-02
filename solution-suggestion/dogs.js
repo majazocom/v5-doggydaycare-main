@@ -64,26 +64,32 @@ function createDogCard(dog) {
     dogsContainer.appendChild(article);
 };
 
+let overlayEl = document.querySelector('.dog-overlay');
 // funktion för när en hund klickas på och tar emot chipnumret så vi har något unikt att gå efter
 function dogClicked(id) {
-    let overlayEl = document.querySelector('.dog-overlay');
     // tömma tidigare innehåll i overlayen:
     overlayEl.innerHTML = "";
-    // lägga till kryss-knapp:
-    overlayEl.innerHTML = `<p class="close">X</p>`;
-    // eventlyssnare på knappen för att kunna stänga overlayen
-    document.querySelector('.close').addEventListener('click', () => {
-        console.log('hej');
-        overlayEl.classList.toggle('show');
-    });
 
     // hitta hunden som id't tillhör
     let dogIndex = dogList.findIndex((dog) => dog.chipNumber === id);
     let dog = dogList[dogIndex];
-    console.log(dog.name);
-    let imgEl = document.createElement('img');
-    imgEl.setAttribute('src', dog.img);
-    overlayEl.appendChild(imgEl);
+
+    overlayEl.innerHTML += `
+        <section class="overlay-content">
+            <img src="${dog.img}">
+            <div class="overlay-content__text-section">
+                <h2>${dog.name.toUpperCase()}</h2>
+                <p>${dog.age}yr</p>
+                <p>${dog.breed}</p>
+                <p>OWNER: ${dog.owner.name} ${dog.owner.lastName}</p>
+            </div>
+        </section>
+    `;
 
     overlayEl.classList.toggle('show');
 };
+
+    // eventlyssnare på hela overlayen för att kunna stänga den
+    overlayEl.addEventListener('click', () => {
+        overlayEl.classList.toggle('show');
+    });
