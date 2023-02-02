@@ -62,7 +62,7 @@ function createDogCard(dog) {
     nameSexAgeWrapper.appendChild(ageEl);
     // lägga in allt vi skapat i vår stora container i js i vår html:
     dogsContainer.appendChild(article);
-}
+};
 
 // funktion för när en hund klickas på och tar emot chipnumret så vi har något unikt att gå efter
 function dogClicked(id) {
@@ -70,4 +70,11 @@ function dogClicked(id) {
     let dogIndex = dogList.findIndex((dog) => dog.chipNumber === id);
     let dog = dogList[dogIndex];
     console.log(dog.name);
-}
+    let overlayEl = document.querySelector('.dog-overlay');
+    overlayEl.innerHTML = "";
+    let imgEl = document.createElement('img');
+    imgEl.setAttribute('src', dog.img);
+    overlayEl.appendChild(imgEl);
+
+    overlayEl.classList.toggle('show');
+};
